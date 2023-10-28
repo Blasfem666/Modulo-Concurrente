@@ -1,0 +1,100 @@
+programa ej5
+areas
+  ciudad1: AreaP(1,1,50,50)
+  ciudad2: AreaP(51,1,100,50)
+  ciudad3: AreaP(1,51,50,100)
+  ciudad4: AreaP(51,51,100,100)
+robots 
+  robot robot1
+  comenzar
+    Pos(1,80)
+    repetir 15
+      si(HayFlorEnLaEsquina)
+        tomarFlor
+      mover
+    Pos(1,80)
+    si(HayFlorEnLaBolsa)
+      depositarFlor
+    Pos(1,75)
+    repetir 15
+      si(HayFlorEnLaEsquina)
+        tomarFlor
+      mover
+    Pos(1,75)
+    si(HayFlorEnLaBolsa)
+      depositarFlor
+  fin
+  robot robot2
+  comenzar
+    Pos(75,80)
+    derecha
+    repetir 20
+      si(HayPapelEnLaEsquina)
+        tomarPapel
+      mover
+    Pos(75,80)
+    si(HayPapelEnLaBolsa)
+      depositarPapel
+    Pos(80,80)
+    repetir 20
+      si(HayPapelEnLaEsquina)
+        tomarPapel
+      mover
+    Pos(80,80)
+    si(HayPapelEnLaBolsa)
+      depositarPapel
+  fin
+  robot robot3
+  comenzar
+    Pos(70,15)
+    derecha
+    repetir 30
+      si(HayFlorEnLaEsquina)
+        tomarFlor
+      mover
+    Pos(70,15)
+    si(HayFlorEnLaBolsa)
+      depositarFlor
+    Pos(70,10)
+    repetir 30
+      si(HayFlorEnLaEsquina)
+        tomarFlor
+      mover
+    Pos(70,10)
+    si(HayFlorEnLaBolsa)
+      depositarFlor
+  fin
+  robot robot4
+  comenzar
+    Pos(10,1)
+    repetir 10
+      si(HayPapelEnLaEsquina)
+        tomarPapel
+      mover
+    Pos(10,1)
+    si(HayPapelEnLaBolsa)
+      depositarPapel
+    Pos(15,1)
+    repetir 10
+      si(HayPapelEnLaEsquina)
+        tomarPapel
+      mover
+    Pos(15,1)
+    si(HayPapelEnLaBolsa)
+      depositarPapel
+  fin
+variables 
+  r1:robot1
+  r2:robot2
+  r3:robot3
+  r4:robot4
+comenzar
+  AsignarArea(r1,ciudad3)
+  AsignarArea(r2,ciudad4)
+  AsignarArea(r3,ciudad2)
+  AsignarArea(r4,ciudad1)
+  Iniciar(r1,1,80)
+  Iniciar(r2,75,80)
+  Iniciar(r3,70,15)
+  Iniciar(r4,10,1)
+fin
