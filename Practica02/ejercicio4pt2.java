@@ -1,68 +1,113 @@
-programa ej4
+programa ej5
+procesos
+  proceso calcularMaximo(ES valor:numero;ES maximo:numero;ES ganador:numero;E id:numero)
+  comenzar
+    si(valor>maximo)
+      maximo:=valor
+      ganador:=id
+  fin
 areas
   ciudad:AreaC(1,1,100,100)
-robots
-  robot fiscalizador
+robots  
+  robot fiscal
   variables
-    ganador:numero
-    fyp:numero
-    maximo:numero
     id:numero
-    posX:numero
-    posY:numero
+    ganador:numero
+    maximo:numero
+    flores_y_papeles:numero
   comenzar
-    maximo:=0
+    total:=0
     EnviarMensaje(1,robot1)
     EnviarMensaje(2,robot2)
     EnviarMensaje(3,robot3)
     EnviarMensaje(4,robot4)
-    repetir 4  
+    repetir 10
       Random(id,1,4)
-      Random(posX,25,75)
-      Random(posY,25,75)
-      EnviarMensaje(posX,id)
-      EnviarMensaje(posY,id)
+      si(id=1)
+        EnviarMensaje(0,robot1)
+      si(id=2)
+        EnviarMensaje(0,robot2)
+      si(id=3)
+        EnviarMensaje(0,robot3)
+      si(id=4)
+        EnviarMensaje(0,robot4)
+    repetir 4
       RecibirMensaje(id,*)
       si(id=1)
-        RecibirMensaje(fyp,robot1)
-      si(id=2)
-        RecibirMensaje(fyp,robot2)
-      si(id=3)
-        RecibirMensaje(fyp,robot3)
-      si(id=4)
-        RecibirMensaje(fyp,robot4)
-      si(fyp>maximo)
-        maximo:=fyp
-        ganador:=id
+        RecibirMensaje(flores_y_papeles,robot1)
+      si(id=1)
+        RecibirMensaje(flores_y_papeles,robot2)
+      si(id=1)
+        RecibirMensaje(flores_y_papeles,robot3)
+      si(id=1)
+        RecibirMensaje(flores_y_papeles,robot4)
+      calcularMaximo(flores_y_papeles,maximo,ganador,id)
+    EnviarMensaje(1,robot1)
+    EnviarMensaje(1,robot2)
+    EnviarMensaje(1,robot3)
+    EnviarMensaje(1,robot4)
+    si(ganador=1)
+      EnviarMensaje(0,robot1)
+      EnviarMensaje(1,robot2)
+      EnviarMensaje(1,robot3)
+      EnviarMensaje(1,robot4)
+    si(ganador=2)
+      EnviarMensaje(0,robot2)
+      EnviarMensaje(1,robot1)
+      EnviarMensaje(1,robot3)
+      EnviarMensaje(1,robot4)
+    si(ganador=3)
+      EnviarMensaje(0,robot3)
+      EnviarMensaje(1,robot1)
+      EnviarMensaje(1,robot2)
+      EnviarMensaje(1,robot4)
+    si(ganador=4)
+      EnviarMensaje(0,robot4)
+      EnviarMensaje(1,robot1)
+      EnviarMensaje(1,robot2)
+      EnviarMensaje(1,robot3)
     Informar(ganador)
   fin
   robot recolector
-  variables 
-    id:numero
-    total:numero
-    posX:numero
-    posY:numero
+  variables
+    ganador:numero
+    ok:numero
+    quienSoy:numero
+    totalRecogido:numero
+    ca:numero
+    av:numero
+    caInicial:numero
+    avInicial:numero  
   comenzar
-    total:=0
-    RecibirMensaje(id,robotFiscal)
-    RecibirMensaje(posX,robotFiscal)
-    RecibirMensaje(posY,robotFiscal)
-    Pos(posX,posY)
-    si(HayFlorEnLaEsquina)
-      tomarFlor
-      total:=total+1
-    si(HayPapelEnLaEsquina
-      tomarPapel
-      total:=total+1
-    EnviarMensaje(id,robotFiscal)
-    EnviarMensaje(total,robotFiscal)
+    RecibirMensaje(quienSoy,robotFiscal)
+    totalRecogido:=0
+    caInicial:=PosCa
+    avInicial:=posAv
+    RecibirMensaje(ok,robotFiscal)
+    mientras(ok=0)
+      Random(av,25,75)
+      Random(ca,25,75)
+      Pos(av,ca)
+      si(HayFlorEnLaEsquina)
+        tomarFlor
+        totalRecogido:=totalRecogido+1
+      si(HayPapelEnLaEsquina)
+        tomarPapel
+        totalRecogido:=totalRecogido+1
+      Pos(avInicial,caInicial)
+      RecibirMensaje(ok,robotFiscal)
+    EnviarMensaje(quienSoy,robotFiscal)
+    EnviarMensaje(totalRecogido,robotFiscal)
+    RecibirMensaje(ganador)
+    si(ganador=0)
+      Pos(50,50)  
   fin
 variables
   robot1:recolector
   robot2:recolector
   robot3:recolector
   robot4:recolector
-  robotFiscal:fiscalizador
+  robotFiscal:fiscal
 comenzar
   AsignarArea(robot1,ciudad)
   AsignarArea(robot2,ciudad)
