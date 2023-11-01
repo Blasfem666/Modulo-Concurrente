@@ -8,6 +8,7 @@ robots
   robot robot1
   comenzar
     Pos(1,80)
+    derecha
     repetir 15
       si(HayFlorEnLaEsquina)
         tomarFlor
@@ -27,7 +28,6 @@ robots
   robot robot2
   comenzar
     Pos(75,80)
-    derecha
     repetir 20
       si(HayPapelEnLaEsquina)
         tomarPapel

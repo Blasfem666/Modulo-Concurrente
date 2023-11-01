@@ -6,6 +6,7 @@ procesos
       si(HayFlorEnLaEsquina)
         tomarFlor
         flores:=flores+1
+      mover
     pos:=pos+1
     si(HayFlorEnLaEsquina)
       tomarFlor
@@ -17,16 +18,17 @@ procesos
       si(HayPapelEnLaEsquina)
         tomarPapel
         papeles:=papeles+1
+      mover
     pos:=pos+1
     si(HayPapelEnLaEsquina)
       tomarPapel
       papeles:=papeles+1
   fin
 areas
-  Area1: AreaPC(1,1,25,100)
-  Area2: AreaPC(26,1,50,100)
-  Area3: AreaPC(51,1,75,100)
-  Area4: AreaPC(76,1,100,100)
+  Area1: AreaP(1,1,25,100)
+  Area2: AreaP(26,1,50,100)
+  Area3: AreaP(51,1,75,100)
+  Area4: AreaP(76,1,100,100)
 robots 
   robot robot1
   variables
@@ -53,9 +55,11 @@ robots
   comenzar
     cantPapeles:=0
     posicion:=26
-    Pos(pos,1)
+    Informar(posicion)
+    Pos(posicion,1)
     repetir 24
       recorrerR2(cantPapeles,posicion)
+      Informar(posicion)
       Pos(posicion,1)
     posicion:=76
     repetir 24
@@ -72,5 +76,5 @@ comenzar
   AsignarArea(Rbot2,Area2)
   AsignarArea(Rbot2,Area4)
   Iniciar(Rbot1,2,2)
-  Iniciar(Rbot2,2,26)
+  Iniciar(Rbot2,26,2)
 fin
