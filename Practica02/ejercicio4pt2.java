@@ -1,0 +1,77 @@
+programa ej4
+areas
+  ciudad:AreaC(1,1,100,100)
+robots
+  robot fiscalizador
+  variables
+    ganador:numero
+    fyp:numero
+    maximo:numero
+    id:numero
+    posX:numero
+    posY:numero
+  comenzar
+    maximo:=0
+    EnviarMensaje(1,robot1)
+    EnviarMensaje(2,robot2)
+    EnviarMensaje(3,robot3)
+    EnviarMensaje(4,robot4)
+    repetir 4  
+      Random(id,1,4)
+      Random(posX,25,75)
+      Random(posY,25,75)
+      EnviarMensaje(posX,id)
+      EnviarMensaje(posY,id)
+      RecibirMensaje(id,*)
+      si(id=1)
+        RecibirMensaje(fyp,robot1)
+      si(id=2)
+        RecibirMensaje(fyp,robot2)
+      si(id=3)
+        RecibirMensaje(fyp,robot3)
+      si(id=4)
+        RecibirMensaje(fyp,robot4)
+      si(fyp>maximo)
+        maximo:=fyp
+        ganador:=id
+    Informar(ganador)
+  fin
+  robot recolector
+  variables 
+    id:numero
+    total:numero
+    posX:numero
+    posY:numero
+  comenzar
+    total:=0
+    RecibirMensaje(id,robotFiscal)
+    RecibirMensaje(posX,robotFiscal)
+    RecibirMensaje(posY,robotFiscal)
+    Pos(posX,posY)
+    si(HayFlorEnLaEsquina)
+      tomarFlor
+      total:=total+1
+    si(HayPapelEnLaEsquina
+      tomarPapel
+      total:=total+1
+    EnviarMensaje(id,robotFiscal)
+    EnviarMensaje(total,robotFiscal)
+  fin
+variables
+  robot1:recolector
+  robot2:recolector
+  robot3:recolector
+  robot4:recolector
+  robotFiscal:fiscalizador
+comenzar
+  AsignarArea(robot1,ciudad)
+  AsignarArea(robot2,ciudad)
+  AsignarArea(robot3,ciudad)
+  AsignarArea(robot4,ciudad)
+  AsignarArea(robotFiscal,ciudad)
+  Iniciar(robot1,25,1)
+  Iniciar(robot2,30,1)
+  Iniciar(robot3,35,1)
+  Iniciar(robot4,40,1)
+  Iniciar(robotFiscal,1,1)
+fin
