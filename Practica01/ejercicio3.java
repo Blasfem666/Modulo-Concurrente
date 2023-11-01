@@ -1,5 +1,12 @@
 programa ej3
 procesos 
+  proceso cumple(ES ok:boolean;E flores:numero;E papeles:numero)
+  variables
+    flores_mas_uno:numero
+  comenzar
+    flores_mas_uno:=flores+1
+    ok:=papeles>flores_mas_uno
+  fin
   proceso vertical(ES altura:numero;ES papeles:numero;ES flores:numero)
   comenzar
     altura:=altura+1
@@ -32,68 +39,23 @@ areas
 robots
   robot robot1
   variables
+    ok:boolean
     base:numero
     altura:numero
     cantEscalones:numero
     cantFlores:numero
     cantPapeles:numero
   comenzar
-    base:=1
-    altura:=1
+    base:=0
+    altura:=0
     cantFlores:=0
     cantPapeles:=0
     cantEscalones:=0
-    Pos(6,12)
     repetir 4
       vertical(altura,cantPapeles,cantFlores)
       horizontal(base,cantPapeles,cantFlores)
-      si(cantPapeles=cantFlores+1)
-        cantEscalones:=cantEscalones+1
-      cantPapeles:=0
-      cantFlores:=0
-    Informar(cantEscalones)
-  fin
-  robot robot2
-  variables
-    base:numero
-    altura:numero
-    cantEscalones:numero
-    cantFlores:numero
-    cantPapeles:numero
-  comenzar
-    base:=1
-    altura:=1
-    cantFlores:=0
-    cantPapeles:=0
-    cantEscalones:=0
-    Pos(10,17)
-    repetir 4
-      vertical(altura,cantPapeles,cantFlores)
-      horizontal(base,cantPapeles,cantFlores)
-      si(cantPapeles=cantFlores+1)
-        cantEscalones:=cantEscalones+1
-      cantPapeles:=0
-      cantFlores:=0
-    Informar(cantEscalones)
-  fin
-  robot robot3
-  variables
-    base:numero
-    altura:numero
-    cantEscalones:numero
-    cantFlores:numero
-    cantPapeles:numero
-  comenzar
-    base:=1
-    altura:=1
-    cantFlores:=0
-    cantPapeles:=0
-    cantEscalones:=0
-    Pos(14,22)
-    repetir 4
-      vertical(altura,cantPapeles,cantFlores)
-      horizontal(base,cantPapeles,cantFlores)
-      si(cantPapeles=cantFlores+1)
+      cumple(ok,cantFlores,cantPapeles)
+      si(ok)
         cantEscalones:=cantEscalones+1
       cantPapeles:=0
       cantFlores:=0
@@ -101,13 +63,13 @@ robots
   fin
 variables
   Rbot1:robot1
-  Rbot2:robot2
-  Rbot3:robot3
+  Rbot2:robot1
+  Rbot3:robot1
 comenzar
   AsignarArea(Rbot1,ciudad)
   AsignarArea(Rbot2,ciudad)
   AsignarArea(Rbot3,ciudad)
-  Iniciar(Rbot1,1,1)
-  Iniciar(Rbot2,1,2)
-  Iniciar(Rbot3,1,3)
+  Iniciar(Rbot1,12,14)
+  Iniciar(Rbot2,17,10)
+  Iniciar(Rbot3,22,6)
 fin
